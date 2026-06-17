@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RegistrarArtista } from './registrar-artista';
 
 describe('RegistrarArtista', () => {
@@ -8,12 +8,13 @@ describe('RegistrarArtista', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegistrarArtista],
-    }).compileComponents();
-
+      imports: [RegistrarArtista, HttpClientTestingModule] 
+    })
+    .compileComponents();
+    
     fixture = TestBed.createComponent(RegistrarArtista);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
