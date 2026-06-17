@@ -21,8 +21,7 @@ export class TecnicaService {
   actualizarTecnica(tecnica: Tecnica): Observable<Tecnica> {
     return this.http.put<Tecnica>(`${environment.url}/tecnica`, tecnica);
   }
-
-  // Se elimina usando el Código (String)
+  
   eliminarTecnica(codigo: string): Observable<Tecnica> {
     return this.http.delete<Tecnica>(`${environment.url}/tecnica/${codigo}`);
   }

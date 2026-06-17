@@ -22,7 +22,6 @@ export class SolicitudService {
     return this.http.put<Solicitud>(`${environment.url}/solicitud`, solicitud);
   }
 
-  // Se elimina usando el Número de Solicitud (String)
   eliminarSolicitud(numero: string): Observable<Solicitud> {
     return this.http.delete<Solicitud>(`${environment.url}/solicitud/${numero}`);
   }

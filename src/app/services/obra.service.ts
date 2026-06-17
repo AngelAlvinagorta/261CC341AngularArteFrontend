@@ -22,7 +22,6 @@ export class ObraService {
     return this.http.put<Obra>(`${environment.url}/obra`, obra);
   }
 
-  // Se elimina usando el Código de la Obra (String)
   eliminarObra(codigo: string): Observable<Obra> {
     return this.http.delete<Obra>(`${environment.url}/obra/${codigo}`);
   }
