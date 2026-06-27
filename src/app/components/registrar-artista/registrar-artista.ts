@@ -1,8 +1,9 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ArtistaService } from '../../services/artista.service';
 import { Artista } from '../../model/artista';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-artista',
@@ -11,9 +12,11 @@ import { Artista } from '../../model/artista';
   templateUrl: './registrar-artista.html',
   styleUrls: ['./registrar-artista.css'],
 })
+
 export class RegistrarArtista implements OnInit {
   private artistaService = inject(ArtistaService);
   private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router);
 
   artistas: Artista[] = [];
   artistaForm: FormGroup;
@@ -28,11 +31,25 @@ export class RegistrarArtista implements OnInit {
   constructor() {
     this.artistaForm = new FormGroup({
       dni: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
-      nombre: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      nombres: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      apellidos: new FormControl('', [Validators.required, Validators.minLength(2)]),
       direccion: new FormControl('', [Validators.required]),
       sexo: new FormControl('M', [Validators.required]),
-      correo: new FormControl('', [Validators.required, Validators.email])
-    });
+      correo: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required])
+    }, { validators: this.validarPassword });
+  }
+
+  validarPassword(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    
+    if (password !== confirmPassword) {
+      control.get('confirmPassword')?.setErrors({ mismatch: true });
+      return { mismatch: true };
+    }
+    return null;
   }
 
   ngOnInit(): void {
@@ -42,7 +59,6 @@ export class RegistrarArtista implements OnInit {
   getArtistas(): void {
     this.artistaService.getArtistas().subscribe(
       (result: Artista[]) => {
-        console.log('Artistas cargados:', result);
         this.artistas = result;
         this.cdr.detectChanges();
       }
@@ -51,17 +67,16 @@ export class RegistrarArtista implements OnInit {
 
   registrarArtista() {
     if (this.artistaForm.valid) {
-      const nuevoArtista: Artista = this.artistaForm.value;
+      const { confirmPassword, ...nuevoArtista } = this.artistaForm.value;
       
-      this.artistaService.registrarArtista(nuevoArtista).subscribe({
+      this.artistaService.registrarArtista(nuevoArtista as Artista).subscribe({
         next: (response) => {
-          console.log('Artista registrado con éxito', response);
           this.getArtistas();
           this.refreshForm();
         },
         error: (err) => {
           console.error('Error al registrar el artista', err);
-          alert('Hubo un error al registrar. Revisa la consola.');
+          alert('Error: Asegúrate de que el backend esté actualizado con los nuevos campos.');
         }
       });
     } else {
@@ -73,4 +88,10 @@ export class RegistrarArtista implements OnInit {
     this.artistaForm.reset({ sexo: 'M' });
     this.isEdited = false;
   }
+
+  cancelarRegistro() {
+  this.artistaForm.reset({ sexo: 'M' });
+  this.isEdited = false;
+  this.router.navigate(['/login']);
+  } 
 }
