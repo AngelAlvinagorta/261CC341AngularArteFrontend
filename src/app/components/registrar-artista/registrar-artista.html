@@ -7,7 +7,7 @@
           
           <div class="row mb-2">
             <label for="dni" class="col-sm-3 col-form-label">DNI:</label>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
               <input type="text" class="form-control" id="dni" placeholder="Ingrese DNI" formControlName="dni" />
             </div>
           </div>
@@ -29,7 +29,7 @@
           <div class="row mb-2">
             <label for="direccion" class="col-sm-3 col-form-label">Dirección:</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="direccion" placeholder="Ingrese dirección" formControlName="direccion" />
+              <input type="text" class="form-control" id="direccion" placeholder="Ingrese dirección, Distrito" formControlName="direccion" />
             </div>
           </div>
 
@@ -42,7 +42,7 @@
 
           <div class="row mb-2">
             <label for="sexo" class="col-sm-3 col-form-label">Sexo:</label>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
               <select class="form-control form-select" id="sexo" formControlName="sexo">
                 @for(s of listaSexos; track s.id){
                   <option [value]="s.id">{{s.descripcion}}</option>

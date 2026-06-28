@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <span class="fs-2 me-2">🖌️</span> 
+      <div class="brand-text">
+        <span class="d-block">LIENZO</span>
+        <span class="d-block">CULTURAL</span>
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+        <li class="nav-item">
+          <a class="nav-link active nav-btn" aria-current="page" href="#">INICIO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-btn" href="#">REGISTRAR OBRA</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-btn" href="#">MIS OBRAS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-btn" href="#">SOLICITUDES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-btn" href="#">ESTADO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-btn" href="#">COTIZACIONES</a>
+        </li>
+      </ul>
+      
+      <div class="d-flex align-items-center text-white profile-section">
+        <div class="rounded-circle bg-white text-dark d-flex justify-content-center align-items-center me-2" style="width: 40px; height: 40px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+          </svg>
+        </div>
+        <span class="fw-bold">{{ nombreUsuario }}</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-section">
+  <img src="https://consultasenlinea.mincetur.gob.pe/fichaInventario/foto.aspx?cod=570562" alt="Interior Galería" class="w-100 hero-image">
+</div>
+
+<div class="title-strip text-center py-3">
+  <h3 class="m-0 fw-bold text-white tracking-wide">NUESTRO CATÁLOGO DE SERVICIOS</h3>
+</div>
+
+<div class="services-section py-5">
+  <div class="container">
+    <div class="row g-5 justify-content-center">
+      
+      <div class="col-md-6 col-lg-5">
+        <div class="card service-card h-100 p-4 border-0">
+          <img src="https://galeriasalamarte.com/cdn/shop/collections/art-gallery-wall---26.jpg?v=1715805776" class="card-img-top mb-4" alt="Exposiciones">
+          <div class="card-body p-0 text-center text-white d-flex flex-column">
+            <h4 class="card-title fw-bold mb-3">Exposiciones de Arte</h4>
+            <p class="card-text mb-4">
+              Ofrecemos nuestros prestigiosos salones para que artistas plásticos nacionales expongan sus obras de arte y cultura al público.
+            </p>
+            <button class="btn btn-service mt-auto mx-auto">Solicitar Servicio</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-5">
+        <div class="card service-card h-100 p-4 border-0">
+          <img src="https://images.adsttc.com/media/images/563b/7a12/e58e/ce93/c100/00ff/large_jpg/HierTeekenen_Rijksmuseum_(8).jpg?1446738438" class="card-img-top mb-4" alt="Tasación">
+          <div class="card-body p-0 text-center text-white d-flex flex-column">
+            <h4 class="card-title fw-bold mb-3">Tasación y Venta de Obras</h4>
+            <p class="card-text mb-4">
+              Contamos con expertos que evaluarán la calidad artística de sus obras y gestionarán el proceso de venta con los mejores márgenes del mercado.
+            </p>
+            <button class="btn btn-service mt-auto mx-auto">Solicitar Evaluación</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
