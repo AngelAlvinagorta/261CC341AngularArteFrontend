@@ -1,0 +1,59 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white">
+          <h4 class="mb-0">Registrar Obra</h4>
+        </div>
+        <div class="card-body p-4">
+
+          <form [formGroup]="obraForm" (ngSubmit)="registrarObra()">
+            <div class="mb-3">
+              <label for="titulo" class="form-label fw-bold">Título de la Obra</label>
+              <input type="text" class="form-control" id="titulo" formControlName="titulo" placeholder="Ej: La Noche Estrellada">
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="tipo" class="form-label fw-bold">Tipo de Obra</label>
+                <select class="form-select" id="tipo" formControlName="tipo">
+                  <option value="" disabled selected>Seleccione un tipo: </option>
+                  @for(t of listaTipos; track t){
+                    <option [value]="t">{{t}}</option>
+                  }
+                </select>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="tecnica" class="form-label fw-bold">Técnica Utilizada</label>
+                <select class="form-select" id="tecnica" formControlName="tecnica">
+                  <option value="" disabled selected>Seleccione la técnica: </option>
+                  @for(tec of listaTecnicas; track tec.codigo){
+                    <option [value]="tec.codigo">{{tec.nombre}}</option>
+                  }
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="dimensiones" class="form-label fw-bold">Dimensiones</label>
+                <input type="text" class="form-control" id="dimensiones" formControlName="dimensiones" placeholder="Ej: 120cm x 80cm">
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <label for="fecha" class="form-label fw-bold">Fecha de Realización</label>
+                <input type="date" class="form-control" id="fecha" formControlName="fechaRealizacion">
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end border-top pt-3">
+              <button type="button" class="btn btn-secondary me-md-2" (click)="cancelar()">Cancelar</button>
+              <button type="submit" class="btn btn-primary" [disabled]="obraForm.invalid">Guardar Obra</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

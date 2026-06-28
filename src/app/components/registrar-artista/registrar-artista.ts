@@ -18,6 +18,7 @@ export class RegistrarArtista implements OnInit {
   private cdr = inject(ChangeDetectorRef);
   private router = inject(Router);
 
+  // Lista de artistas registrados
   artistas: Artista[] = [];
   artistaForm: FormGroup;
   isEdited: boolean = false;

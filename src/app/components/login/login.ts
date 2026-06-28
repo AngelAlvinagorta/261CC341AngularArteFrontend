@@ -41,6 +41,7 @@ export class Login {
           if (usuarioEncontrado) {
             const primerNombre = usuarioEncontrado.nombres.split(' ')[0].toUpperCase();
             localStorage.setItem('usuarioLogueado', primerNombre);
+            localStorage.setItem('dniUsuarioLogueado', usuarioEncontrado.dni);
             this.router.navigate(['/inicio']); 
           } else {
             this.mensajeError = 'Correo o contraseña incorrectos.';

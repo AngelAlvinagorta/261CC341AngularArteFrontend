@@ -4,6 +4,7 @@ import { Tecnica } from './tecnica';
 export interface Obra {
   codigo: string;
   titulo: string;
+  tipo: string;
   fechaRealizacion: string;
   dimensiones: string;
   estadoArtistico: string;
@@ -12,4 +13,5 @@ export interface Obra {
   porcentajeGanancia?: number;
   solicitud: Solicitud;
   tecnica: Tecnica;
+  artista: { dni: string };
 }
