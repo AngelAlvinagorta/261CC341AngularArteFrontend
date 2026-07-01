@@ -1,121 +1,87 @@
 <div class="container mt-4">
-  <div class="row">
-    <div class="card mb-4 shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title mb-4">Registrar Artista</h5>
-        <form class="form-group" [formGroup]="artistaForm">
-          
-          <div class="row mb-2">
-            <label for="dni" class="col-sm-3 col-form-label">DNI:</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" id="dni" placeholder="Ingrese DNI" formControlName="dni" />
-            </div>
-          </div>
-
-          <div class="row mb-2">
-            <label for="nombres" class="col-sm-3 col-form-label">Nombres:</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="nombres" placeholder="Ingrese nombres" formControlName="nombres" />
-            </div>
-          </div>
-
-          <div class="row mb-2">
-            <label for="apellidos" class="col-sm-3 col-form-label">Apellidos:</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="apellidos" placeholder="Ingrese apellidos" formControlName="apellidos" />
-            </div>
-          </div>
-
-          <div class="row mb-2">
-            <label for="direccion" class="col-sm-3 col-form-label">Dirección:</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="direccion" placeholder="Ingrese dirección, Distrito" formControlName="direccion" />
-            </div>
-          </div>
-
-          <div class="row mb-2">
-            <label for="correo" class="col-sm-3 col-form-label">Correo Electrónico:</label>
-            <div class="col-sm-6">
-              <input type="email" class="form-control" id="correo" placeholder="ejemplo@correo.com" formControlName="correo" />
-            </div>
-          </div>
-
-          <div class="row mb-2">
-            <label for="sexo" class="col-sm-3 col-form-label">Sexo:</label>
-            <div class="col-sm-2">
-              <select class="form-control form-select" id="sexo" formControlName="sexo">
-                @for(s of listaSexos; track s.id){
-                  <option [value]="s.id">{{s.descripcion}}</option>
-                }
-              </select>
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <div class="row mb-2">
-            <label for="password" class="col-sm-3 col-form-label fw-bold">Contraseña:</label>
-            <div class="col-sm-6">
-              <input type="password" class="form-control" id="password" placeholder="Mínimo 6 caracteres" formControlName="password" />
-            </div>
-          </div>
-
-          <div class="row mb-2">
-            <label for="confirmPassword" class="col-sm-3 col-form-label fw-bold">Confirmar Contraseña:</label>
-            <div class="col-sm-6">
-              <input type="password" class="form-control" id="confirmPassword" placeholder="Vuelva a escribir la contraseña" formControlName="confirmPassword" />
-              <div class="text-danger mt-1 small" *ngIf="artistaForm.hasError('mismatch') && artistaForm.get('confirmPassword')?.touched">
-                ❌ Las contraseñas no coinciden.
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="card mb-4 shadow-sm border-0">
+        <div class="card-header bg-dark text-white">
+          <h5 class="card-title mb-0">Registrar Artista</h5>
+        </div>
+        <div class="card-body p-4">
+          <form class="form-group" [formGroup]="artistaForm">
+            
+            <div class="row mb-3 align-items-center">
+              <label for="dni" class="col-sm-4 col-form-label fw-bold">DNI:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="dni" placeholder="Ingrese DNI" formControlName="dni" />
               </div>
             </div>
-          </div>
 
-          <div class="mt-4">
-            <button type="submit" class="btn btn-primary me-2" (click)="registrarArtista()" [disabled]="artistaForm.invalid">
-              {{isEdited ? 'Actualizar' : 'Registrar'}}
-            </button>
-            <button type="button" class="btn btn-secondary" (click)="cancelarRegistro()">Cancelar</button>
-          </div>
+            <div class="row mb-3 align-items-center">
+              <label for="nombres" class="col-sm-4 col-form-label fw-bold">Nombres:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="nombres" placeholder="Ingrese nombres" formControlName="nombres" />
+              </div>
+            </div>
 
-        </form>
-      </div>
-    </div> 
-    
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title mb-3">Lista de Artistas Registrados</h5>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover align-middle">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Nombres</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Sexo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let artista of artistas; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>{{ artista.dni }}</td>
-                <td>{{ artista.nombres }}</td>
-                <td>{{ artista.apellidos }}</td>
-                <td>{{ artista.direccion }}</td>
-                <td>{{ artista.correo }}</td>
-                <td>
-                  <span *ngIf="artista.sexo === 'M'">Masculino</span>
-                  <span *ngIf="artista.sexo === 'F'">Femenino</span>
-                  <span *ngIf="artista.sexo === 'OTRO'">Otro</span>
-                </td>
-              </tr>
-              <tr *ngIf="artistas.length === 0">
-                <td colspan="7" class="text-center text-muted">No hay artistas registrados aún.</td>
-              </tr>
-            </tbody>
-          </table>
+            <div class="row mb-3 align-items-center">
+              <label for="apellidos" class="col-sm-4 col-form-label fw-bold">Apellidos:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="apellidos" placeholder="Ingrese apellidos" formControlName="apellidos" />
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <label for="direccion" class="col-sm-4 col-form-label fw-bold">Dirección:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="direccion" placeholder="Ingrese dirección, Distrito" formControlName="direccion" />
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <label for="correo" class="col-sm-4 col-form-label fw-bold">Correo Electrónico:</label>
+              <div class="col-sm-8">
+                <input type="email" class="form-control" id="correo" placeholder="ejemplo@correo.com" formControlName="correo" />
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <label for="sexo" class="col-sm-4 col-form-label fw-bold">Sexo:</label>
+              <div class="col-sm-5">
+                <select class="form-control form-select" id="sexo" formControlName="sexo">
+                  <option value="" disabled selected>Seleccione</option>
+                  @for(s of listaSexos; track s.id){
+                    <option [value]="s.id">{{s.descripcion}}</option>
+                  }
+                </select>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row mb-3 align-items-center">
+              <label for="password" class="col-sm-4 col-form-label fw-bold">Contraseña:</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="password" placeholder="Mínimo 6 caracteres" formControlName="password" />
+              </div>
+            </div>
+
+            <div class="row mb-4 align-items-center">
+              <label for="confirmPassword" class="col-sm-4 col-form-label fw-bold">Confirmar Contraseña:</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Vuelva a escribir la contraseña" formControlName="confirmPassword" />
+                <div class="text-danger mt-1 small fw-bold" *ngIf="artistaForm.hasError('mismatch') && artistaForm.get('confirmPassword')?.touched">
+                  Las contraseñas no coinciden.
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end border-top pt-3">
+              <button type="button" class="btn btn-secondary me-md-2" (click)="cancelarRegistro()">Cancelar</button>
+              <button type="submit" class="btn btn-primary px-4" (click)="registrarArtista()" [disabled]="artistaForm.invalid">
+                {{isEdited ? 'Actualizar' : 'Registrar'}}
+              </button>
+            </div>
+
+          </form>
         </div>
       </div>
     </div> 
